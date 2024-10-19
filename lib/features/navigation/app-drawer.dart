@@ -3,7 +3,6 @@ import 'package:proyecto_final/features/navigation/routes/menu-item-routes.dart'
 import 'package:proyecto_final/features/navigation/widgets/expanded-menu.dart';
 
 class AppDrawer extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -15,20 +14,18 @@ class AppDrawer extends StatelessWidget {
             height: 50,
             decoration: BoxDecoration(
                 border: Border(
-              bottom: BorderSide(
-                color: Colors.amber, // bottom border color
-                width: 2.0, // width border bottom
-              ),
-            )),
+                    bottom: BorderSide(color: Colors.amber, width: 2.0))),
             child: Container(
-              margin: EdgeInsets.only(left: 20.0),
+                margin: EdgeInsets.only(left: 20.0),
                 child: Text(
                   'Buzz & Bloom',
-                  textAlign: TextAlign.left,     
-                  style: TextStyle(color:Colors.amber),           
+                  textAlign: TextAlign.left,
+                  style: TextStyle(color: Colors.amber),
                 )),
           ),
-          ExpandedMenu(menuItemRoutes: menuItemRoutes,),
+          ExpandedMenu(
+            menuItemRoutes: menuItemRoutes,
+          ),
         ],
       ),
     );
