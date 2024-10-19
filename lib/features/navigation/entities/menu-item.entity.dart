@@ -10,4 +10,6 @@ class MenuItem {
     required this.icon,
     required this.route,
   });
+
+  
 }
