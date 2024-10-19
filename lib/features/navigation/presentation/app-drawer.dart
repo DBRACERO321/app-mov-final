@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_final/features/navigation/domain/entities/menu-item.dart';
+import 'package:proyecto_final/features/navigation/entities/menu-item.dart';
 import 'package:proyecto_final/features/navigation/presentation/cubit/drawer-cubit.dart';
 
 class AppDrawer extends StatelessWidget {
   final List<MenuItem> menuItems = [
-    MenuItem(title: 'Home', icon: Icons.home, route: '/home'),
+    MenuItem(title: 'Inicio', icon: Icons.home, route: '/home'),
     MenuItem(title: 'Profile', icon: Icons.person, route: '/profile'),
     MenuItem(title: 'Settings', icon: Icons.settings, route: '/settings'),
   ];
@@ -22,15 +22,17 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border(
               bottom: BorderSide(
-                color: Colors.blue, // Color del borde inferior
+                color: Colors.amber, // Color del borde inferior
                 width: 2.0, // Ancho del borde inferior
               ),
             )),
-            child: Center(
-                child: Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUv9DBazkHajfO9sj2rJfOWoAZPYgjw1zcnA&s', // Ruta de la imagen
-              fit: BoxFit.fitHeight, // Ajustar la imagen
-            )),
+            child: Container(
+              margin: EdgeInsets.only(left: 20.0),
+                child: Text(
+                  'Buzz & Bloom',
+                  textAlign: TextAlign.left,     
+                  style: TextStyle(color:Colors.amber),           
+                )),
           ),
           Expanded(
             child: ListView.builder(
@@ -43,12 +45,12 @@ class AppDrawer extends StatelessWidget {
                     return ListTile(
                       leading: Icon(
                         item.icon,
-                        color: isSelected ? Colors.blue : Colors.black,
+                        color: isSelected ? Colors.amber : Colors.amber,
                       ),
                       title: Text(
                         item.title,
                         style: TextStyle(
-                          color: isSelected ? Colors.blue : Colors.black,
+                          color: isSelected ? Colors.amber : Colors.black,
                         ),
                       ),
                       onTap: () {
