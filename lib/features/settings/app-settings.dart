@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_final/features/navigation/presentation/app-drawer.dart';
-import 'package:proyecto_final/features/navigation/presentation/cubit/drawer-cubit.dart';
+import 'package:proyecto_final/features/navigation/app-drawer.dart';
+import 'package:proyecto_final/features/navigation/cubit/drawer-cubit.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
