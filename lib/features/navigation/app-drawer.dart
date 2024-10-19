@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_final/features/navigation/entities/drawer-state.dart';
-import 'package:proyecto_final/features/navigation/entities/menu-item.dart';
-import 'package:proyecto_final/features/navigation/cubit/drawer-cubit.dart';
+import 'package:proyecto_final/features/navigation/entities/drawer-state.entity.dart';
+import 'package:proyecto_final/features/navigation/entities/menu-item.entity.dart';
+import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
 
 class AppDrawer extends StatelessWidget {
   final List<MenuItem> menuItems = [

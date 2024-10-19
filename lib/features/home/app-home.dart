@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/features/home/dummy_data/product-list.dart';
 import 'package:proyecto_final/features/home/widgets/product-card.dart';
 import 'package:proyecto_final/features/navigation/app-drawer.dart';
-import 'package:proyecto_final/features/navigation/cubit/drawer-cubit.dart';
+import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
 
 class HomePage extends StatelessWidget {
   @override
