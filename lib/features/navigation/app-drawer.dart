@@ -33,9 +33,9 @@ class AppDrawer extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: menuItemList.length,
+              itemCount: menuItemRoutes.length,
               itemBuilder: (context, index) {
-                final item = menuItemList[index];
+                final item = menuItemRoutes[index];
                 return BlocBuilder<DrawerCubit, DrawerState>(
                   builder: (context, state) {
                     final isSelected = state.selectedIndex == index;
