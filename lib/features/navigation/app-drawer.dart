@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/features/navigation/entities/drawer-state.entity.dart';
-import 'package:proyecto_final/features/navigation/entities/menu-item.entity.dart';
 import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
+import 'package:proyecto_final/features/navigation/routes/menu-item-list.dart';
 
 class AppDrawer extends StatelessWidget {
-  final List<MenuItem> menuItems = [
-    MenuItem(title: 'Inicio', icon: Icons.home, route: '/home'),
-    MenuItem(title: 'Profile', icon: Icons.person, route: '/profile'),
-    MenuItem(title: 'Settings', icon: Icons.settings, route: '/settings'),
-  ];
+  
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +33,9 @@ class AppDrawer extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: menuItems.length,
+              itemCount: menuItemList.length,
               itemBuilder: (context, index) {
-                final item = menuItems[index];
+                final item = menuItemList[index];
                 return BlocBuilder<DrawerCubit, DrawerState>(
                   builder: (context, state) {
                     final isSelected = state.selectedIndex == index;
