@@ -13,7 +13,7 @@ class ExpandedMenu extends StatelessWidget {
       child: ListView.builder(
         itemCount: menuItemRoutes.length,
         itemBuilder: (context, index) {
-          final item = menuItemRoutes[index];
+          MenuItem item = menuItemRoutes[index];
           return MenuItemTile(index:index,icon: item.icon,title: item.title, route: item.route);
         },
       ),
