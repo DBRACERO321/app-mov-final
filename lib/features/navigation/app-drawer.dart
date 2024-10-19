@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proyecto_final/features/navigation/entities/drawer-state.entity.dart';
-import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
 import 'package:proyecto_final/features/navigation/routes/menu-item-routes.dart';
+import 'package:proyecto_final/features/navigation/widgets/expanded-menu.dart';
 
 class AppDrawer extends StatelessWidget {
-  
 
   @override
   Widget build(BuildContext context) {
@@ -31,35 +28,7 @@ class AppDrawer extends StatelessWidget {
                   style: TextStyle(color:Colors.amber),           
                 )),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: menuItemRoutes.length,
-              itemBuilder: (context, index) {
-                final item = menuItemRoutes[index];
-                return BlocBuilder<DrawerCubit, DrawerState>(
-                  builder: (context, state) {
-                    final isSelected = state.selectedIndex == index;
-                    return ListTile(
-                      leading: Icon(
-                        item.icon,
-                        color: isSelected ? Colors.amber : Colors.amber,
-                      ),
-                      title: Text(
-                        item.title,
-                        style: TextStyle(
-                          color: isSelected ? Colors.amber : Colors.black,
-                        ),
-                      ),
-                      onTap: () {
-                        context.read<DrawerCubit>().selectItem(index);
-                        Navigator.pushReplacementNamed(context, item.route);
-                      },
-                    );
-                  },
-                );
-              },
-            ),
-          ),
+          ExpandedMenu(menuItemRoutes: menuItemRoutes,),
         ],
       ),
     );
