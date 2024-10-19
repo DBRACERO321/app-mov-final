@@ -10,8 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => DrawerCubit(),
+    return BlocProvider.value(
+      value: BlocProvider.of<DrawerCubit>(context),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Inicio'),
