@@ -6,8 +6,6 @@ import 'package:proyecto_final/features/navigation/app-drawer.dart';
 import 'package:proyecto_final/features/navigation/cubit/drawer-cubit.dart';
 
 class HomePage extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -23,7 +21,7 @@ class HomePage extends StatelessWidget {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // number of columns
               crossAxisSpacing: 5,//horizontal space
-              mainAxisSpacing: 05,//vertical space
+              mainAxisSpacing: 5,//vertical space
               childAspectRatio: 0.8, //aspect radio of card
             ),
             itemCount: productList.length,

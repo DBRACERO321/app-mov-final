@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return BlocProvider(
       create: (context) => DrawerCubit(),
       child: MaterialApp(
-        title: 'Flutter Drawer Example',
+        title:'Buzz & Bloom',
         initialRoute: '/home',
         routes: {
           '/home': (context) => HomePage(),
