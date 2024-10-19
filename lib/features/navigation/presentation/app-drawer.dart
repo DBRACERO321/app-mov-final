@@ -22,8 +22,8 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border(
               bottom: BorderSide(
-                color: Colors.amber, // Color del borde inferior
-                width: 2.0, // Ancho del borde inferior
+                color: Colors.amber, // bottom border color
+                width: 2.0, // width border bottom
               ),
             )),
             child: Container(
