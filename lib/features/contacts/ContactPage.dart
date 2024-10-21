@@ -17,7 +17,7 @@ class _ContactPageState extends State<ContactPage>
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
 
-  double _opacity = 0.0; // Valor inicial de opacidad
+  double opacity = 0.0; // Valor inicial de opacidad
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _ContactPageState extends State<ContactPage>
     // Iniciar la animación después de que la página se haya construido
     Future.delayed(Duration(milliseconds: 100), () {
       setState(() {
-        _opacity = 1.0; // Cambiar la opacidad para hacer visible el contenido
+        opacity = 1.0; // Cambiar la opacidad para hacer visible el contenido
       });
       _controller.forward(); // Iniciar la animación de opacidad
     });
