@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       create: (context) => DrawerCubit(),
       child: MaterialApp(
         title: 'Buzz & Bloom',
-        initialRoute: '/home',
+        initialRoute: '/profile',
         routes: {
           '/home': (context) => HomePage(),
           '/profile': (context) => ProfilePage(),
