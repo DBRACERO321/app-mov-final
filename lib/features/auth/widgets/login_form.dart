@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'custom_text_field.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -7,7 +8,6 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -23,11 +23,13 @@ class _LoginFormState extends State<LoginForm> {
     return Form(
       key: _formKey,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          // Campo de Usuario
-          TextFormField(
+          CustomTextField(
             controller: _usernameController,
-            decoration: InputDecoration(labelText: 'Usuario'),
+            labelText: 'Usuario',
+            prefixIcon: Icon(Icons.person, color: Colors.lightBlue),
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Por favor ingrese su usuario';
@@ -35,10 +37,11 @@ class _LoginFormState extends State<LoginForm> {
               return null;
             },
           ),
-          // Campo de Contraseña
-          TextFormField(
+          SizedBox(height: 20),
+          CustomTextField(
             controller: _passwordController,
-            decoration: InputDecoration(labelText: 'Contraseña'),
+            labelText: 'Contraseña',
+            prefixIcon: Icon(Icons.lock, color: Colors.lightBlue),
             obscureText: true,
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -47,24 +50,25 @@ class _LoginFormState extends State<LoginForm> {
               return null;
             },
           ),
-          // Botón de Inicio de Sesión
+          SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                // Aquí puedes poner la lógica para validar el inicio de sesión
-                // Si es exitoso, navegas a la pantalla de Home
                 Navigator.pushReplacementNamed(context, '/home');
-
-                // También puedes mostrar un mensaje de éxito
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Inicio de sesión exitoso')),
                 );
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.yellow, // Color de fondo del botón
+              backgroundColor: Colors.lightBlue,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
             ),
-            child: Text('Iniciar Sesión'),
+            child: Text('Iniciar Sesión', style: TextStyle(fontSize: 18)),
           ),
         ],
       ),
