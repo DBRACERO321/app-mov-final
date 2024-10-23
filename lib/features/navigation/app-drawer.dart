@@ -18,7 +18,7 @@ class AppDrawer extends StatelessWidget {
             child: Container(
                 margin: EdgeInsets.only(left: 20.0),
                 child: Text(
-                  'Buzz & Bloom',
+                  'Estilo 360',
                   textAlign: TextAlign.left,
                   style: TextStyle(color: Colors.lightBlue),
                 )),
