@@ -62,67 +62,102 @@ class _ContactPageState extends State<ContactPage>
           title: const Text('Contáctanos'),
         ),
         drawer: AppDrawer(), // Agregar el AppDrawer aquí
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: FadeTransition(
-            opacity: _opacityAnimation, // Aplicar la animación de opacidad
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  'Estamos aquí para ayudarte. Completa el formulario a continuación:',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: 'Nombre',
-                    border: OutlineInputBorder(),
+        body: Container(
+          color: Colors.white, // Fondo blanco para todo el contenido
+          height: double.infinity, // Ocupar todo el alto disponible
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(5.0),
+            child: FadeTransition(
+              opacity: _opacityAnimation, // Aplicar la animación de opacidad
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 24.0),
+                    child: Text(
+                      'Estamos aquí para ayudarte. Completa el formulario a continuación:',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
                   ),
-                ),
-                SizedBox(height: 16),
-                TextField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                SizedBox(height: 16),
-                TextField(
-                  controller: _messageController,
-                  maxLines: 5,
-                  decoration: InputDecoration(
-                    labelText: 'Mensaje',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      final String name = _nameController.text;
-                      final String email = _emailController.text;
-                      final String message = _messageController.text;
+                  Container(
+                    padding: EdgeInsets.all(8.0),
+                    margin: EdgeInsets.symmetric(horizontal: 24.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.lightBlue, width: 1),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          TextField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              labelText: 'Nombre',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          TextField(
+                            controller: _emailController,
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          TextField(
+                            controller: _messageController,
+                            maxLines: 5,
+                            decoration: InputDecoration(
+                              labelText: 'Mensaje',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                final String name = _nameController.text;
+                                final String email = _emailController.text;
+                                final String message = _messageController.text;
 
-                      print('Nombre: $name, Correo: $email, Mensaje: $message');
+                                print(
+                                    'Nombre: $name, Correo: $email, Mensaje: $message');
 
-                      _nameController.clear();
-                      _emailController.clear();
-                      _messageController.clear();
+                                _nameController.clear();
+                                _emailController.clear();
+                                _messageController.clear();
 
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                              '¡Gracias por tu mensaje! Nos pondremos en contacto pronto.'),
-                        ),
-                      );
-                    },
-                    child: Text('Enviar'),
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                        '¡Gracias por tu mensaje! Nos pondremos en contacto pronto.'),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.lightBlue,
+                                foregroundColor: Colors.white,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 50, vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5.0),
+                                ),
+                              ),
+                              child: Text('Enviar',
+                                  style: TextStyle(fontSize: 18)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
