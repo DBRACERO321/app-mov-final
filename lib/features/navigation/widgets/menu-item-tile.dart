@@ -9,22 +9,49 @@ class MenuItemTile extends StatelessWidget {
   final String title;
   final String route;
 
-  const MenuItemTile({Key? key,required this.index,required this.icon,required this.title,required this.route,
+  const MenuItemTile({
+    Key? key,
+    required this.index,
+    required this.icon,
+    required this.title,
+    required this.route,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   return BlocBuilder<DrawerCubit, DrawerState>(
-            builder: (context, state) {
-              return ListTile(
-                leading: Icon(icon,color: state.selectedIndex == index ? Colors.lightBlue : Colors.blueGrey,),
-                title: Text(title,style: TextStyle(color: state.selectedIndex == index ? Colors.lightBlue : Colors.grey)),
-                onTap: () {
-                  context.read<DrawerCubit>().selectItem(index);
-                  Navigator.pushReplacementNamed(context, route);
-                },
-              );
+    return BlocBuilder<DrawerCubit, DrawerState>(
+      builder: (context, state) {
+        return Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.blueGrey, // Color del borde
+                width: 1.0, // Ancho del borde
+              ),
+            ),
+          ),
+          child: ListTile(
+            leading: Icon(
+              icon,
+              color: state.selectedIndex == index
+                  ? Colors.lightBlue
+                  : Colors.blueGrey,
+            ),
+            title: Text(
+              title,
+              style: TextStyle(
+                color: state.selectedIndex == index
+                    ? Colors.lightBlue
+                    : Colors.blueGrey,
+              ),
+            ),
+            onTap: () {
+              context.read<DrawerCubit>().selectItem(index);
+              Navigator.pushReplacementNamed(context, route);
             },
-          );
+          ),
+        );
+      },
+    );
   }
 }

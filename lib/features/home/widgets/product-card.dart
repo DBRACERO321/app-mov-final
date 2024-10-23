@@ -12,7 +12,8 @@ class ProductCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0), // Border radius of card
       ),
-      elevation: 2,
+      elevation: 4,
+      color: Colors.grey[50],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +32,7 @@ class ProductCard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               product.name,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.blueGrey),
             ),
           ),
           Padding(
@@ -54,7 +55,7 @@ class ProductCard extends StatelessWidget {
                     },
                     child: Icon(
                       Icons.shopping_cart_outlined, // Icono de carrito
-                      color: Colors.amber,
+                      color: Colors.lightBlue,
                       size: 20.0,
                     ),
                   ),

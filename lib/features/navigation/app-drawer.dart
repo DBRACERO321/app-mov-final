@@ -15,13 +15,12 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border(
                     bottom: BorderSide(color: Colors.lightBlue, width: 2.0))),
-            child: Container(
-                margin: EdgeInsets.only(left: 20.0),
-                child: Text(
-                  'Estilo 360',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.lightBlue),
-                )),
+            child: Center(
+                child: Image.asset(
+                'assets/images/logo.png',
+                width: 300,
+                height: 200,
+              )),
           ),
           ExpandedMenu(
             menuItemRoutes: menuItemRoutes,

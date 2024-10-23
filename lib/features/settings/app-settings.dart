@@ -9,8 +9,19 @@ class SettingsPage extends StatelessWidget {
     return BlocProvider.value(
       value: BlocProvider.of<DrawerCubit>(context), // Reutiliza el estado del Drawer.
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Settings'),
+         appBar: AppBar(
+          title: const Text('Settings',style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: Icon(Icons.menu, color: Colors.lightBlue),
+                onPressed: () {
+                  Scaffold.of(context)
+                      .openDrawer(); // Usa el contexto correcto aquí
+                },
+              );
+            },
+          ),
         ),
         drawer: AppDrawer(), // Mantenemos el Drawer en esta página.
         body: Center(

@@ -58,8 +58,19 @@ class _ContactPageState extends State<ContactPage>
     return BlocProvider.value(
       value: BlocProvider.of<DrawerCubit>(context),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Contáctanos'),
+         appBar: AppBar(
+          title: const Text('Contacto',style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: Icon(Icons.menu, color: Colors.lightBlue),
+                onPressed: () {
+                  Scaffold.of(context)
+                      .openDrawer(); // Usa el contexto correcto aquí
+                },
+              );
+            },
+          ),
         ),
         drawer: AppDrawer(), // Agregar el AppDrawer aquí
         body: Container(

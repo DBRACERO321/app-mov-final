@@ -59,8 +59,19 @@ class _AboutUsPageState extends State<AboutUsPage> {
     return BlocProvider.value(
       value: BlocProvider.of<DrawerCubit>(context),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Acerca de Nosotros'),
+         appBar: AppBar(
+          title: const Text('Acerca de nosotros',style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: Icon(Icons.menu, color: Colors.lightBlue),
+                onPressed: () {
+                  Scaffold.of(context)
+                      .openDrawer(); // Usa el contexto correcto aquí
+                },
+              );
+            },
+          ),
         ),
         drawer: AppDrawer(),
         body: SingleChildScrollView(
@@ -73,7 +84,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                 opacity: _opacityList[0], // Animar con el valor correspondiente
                 duration: Duration(seconds: 1),
                 child: Text(
-                  'Estilo Urbano',
+                  'Estilo 360',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
@@ -83,7 +94,7 @@ class _AboutUsPageState extends State<AboutUsPage> {
                 opacity: _opacityList[1], // Animar con el valor correspondiente
                 duration: Duration(seconds: 1),
                 child: Text(
-                  'En Estilo Urbano, somos apasionados por la moda y nos dedicamos a '
+                  'En Estilo 360, somos apasionados por la moda y nos dedicamos a '
                   'ofrecer prendas de alta calidad que reflejan las últimas tendencias. '
                   'Nuestro objetivo es empoderar a nuestros clientes para que se sientan '
                   'cómodos y seguros en su estilo personal.',
