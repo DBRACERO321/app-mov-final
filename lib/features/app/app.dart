@@ -19,7 +19,7 @@ class App extends StatelessWidget {
           '/home': (context) => HomePage(),
           '/profile': (context) => AuthPage(),
           '/settings': (context) => SettingsPage(),
-          '/about_us': (context) => AboutUsPage(),
+          '/about/us': (context) => AboutUsPage(),
           '/contacts': (context) => ContactPage(),
         },
       ),
