@@ -76,7 +76,7 @@ class _ContactPageState extends State<ContactPage>
                     padding: const EdgeInsets.symmetric(
                         vertical: 20.0, horizontal: 24.0),
                     child: Text(
-                      'Estamos aquí para ayudarte. Completa el formulario a continuación:',
+                      'Estamos aquí para ayudarte. Nos pondremos en contacto contigo:',
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
@@ -97,7 +97,14 @@ class _ContactPageState extends State<ContactPage>
                             controller: _nameController,
                             decoration: InputDecoration(
                               labelText: 'Nombre',
-                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.lightBlue, width: 2.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.black54, width: 1.0),
+                              ),
                             ),
                           ),
                           SizedBox(height: 16),
@@ -105,7 +112,14 @@ class _ContactPageState extends State<ContactPage>
                             controller: _emailController,
                             decoration: InputDecoration(
                               labelText: 'Email',
-                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.lightBlue, width: 2.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.black54, width: 1.0),
+                              ),
                             ),
                           ),
                           SizedBox(height: 16),
@@ -114,7 +128,14 @@ class _ContactPageState extends State<ContactPage>
                             maxLines: 5,
                             decoration: InputDecoration(
                               labelText: 'Mensaje',
-                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.lightBlue, width: 2.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.black54, width: 1.0),
+                              ),
                             ),
                           ),
                           SizedBox(height: 20),
