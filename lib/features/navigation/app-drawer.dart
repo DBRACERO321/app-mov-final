@@ -14,13 +14,13 @@ class AppDrawer extends StatelessWidget {
             height: 50,
             decoration: BoxDecoration(
                 border: Border(
-                    bottom: BorderSide(color: Colors.amber, width: 2.0))),
+                    bottom: BorderSide(color: Colors.lightBlue, width: 2.0))),
             child: Container(
                 margin: EdgeInsets.only(left: 20.0),
                 child: Text(
                   'Buzz & Bloom',
                   textAlign: TextAlign.left,
-                  style: TextStyle(color: Colors.amber),
+                  style: TextStyle(color: Colors.lightBlue),
                 )),
           ),
           ExpandedMenu(

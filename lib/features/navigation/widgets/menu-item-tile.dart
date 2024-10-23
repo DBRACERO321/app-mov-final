@@ -17,8 +17,8 @@ class MenuItemTile extends StatelessWidget {
    return BlocBuilder<DrawerCubit, DrawerState>(
             builder: (context, state) {
               return ListTile(
-                leading: Icon(icon,color: state.selectedIndex == index ? Colors.amber : Colors.black,),
-                title: Text(title,style: TextStyle(color: state.selectedIndex == index ? Colors.amber : Colors.black)),
+                leading: Icon(icon,color: state.selectedIndex == index ? Colors.lightBlue : Colors.blueGrey,),
+                title: Text(title,style: TextStyle(color: state.selectedIndex == index ? Colors.lightBlue : Colors.grey)),
                 onTap: () {
                   context.read<DrawerCubit>().selectItem(index);
                   Navigator.pushReplacementNamed(context, route);
