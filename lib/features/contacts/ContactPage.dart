@@ -61,7 +61,7 @@ class _ContactPageState extends State<ContactPage>
       value: BlocProvider.of<DrawerCubit>(context),
       child: Scaffold(
           appBar: AppbarW(
-          appbar: Appbar(title: 'Mi Página'), // Pasando un título dinámico
+          appbar: Appbar(title: 'Contáctanos'), // Pasando un título dinámico
         ),
         drawer: AppDrawer(), // Agregar el AppDrawer aquí
         body: Container(

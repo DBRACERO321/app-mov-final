@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppbarW(
-          appbar: Appbar(title: 'Mi Página'), // Pasando un título dinámico
+          appbar: Appbar(title: 'Inicio'), // Pasando un título dinámico
         ),
         drawer: AppDrawer(),
         body: Padding(
