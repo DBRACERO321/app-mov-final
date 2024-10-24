@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/common-widgets/appbar/appbar.dart';
-import 'package:proyecto_final/common-widgets/appbar/entities/appbar.dart';
 import 'package:proyecto_final/features/navigation/app-drawer.dart';
 import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
 
@@ -60,9 +59,7 @@ class _ContactPageState extends State<ContactPage>
     return BlocProvider.value(
       value: BlocProvider.of<DrawerCubit>(context),
       child: Scaffold(
-          appBar: AppbarW(
-          appbar: Appbar(title: 'Contáctanos'), // Pasando un título dinámico
-        ),
+        appBar: AppbarW(title: 'Contáctanos'),
         drawer: AppDrawer(), // Agregar el AppDrawer aquí
         body: Container(
           color: Colors.white, // Fondo blanco para todo el contenido

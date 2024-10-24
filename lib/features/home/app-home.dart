@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/common-widgets/appbar/appbar.dart';
-import 'package:proyecto_final/common-widgets/appbar/entities/appbar.dart';
 import 'package:proyecto_final/features/home/dummy_data/product-list.dart';
 import 'package:proyecto_final/features/home/widgets/product-card.dart';
 import 'package:proyecto_final/features/navigation/app-drawer.dart';
@@ -14,9 +13,7 @@ class HomePage extends StatelessWidget {
       value: BlocProvider.of<DrawerCubit>(context),
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        appBar: AppbarW(
-          appbar: Appbar(title: 'Inicio'), // Pasando un título dinámico
-        ),
+        appBar: AppbarW(title: 'Contáctanos'),
         drawer: AppDrawer(),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
