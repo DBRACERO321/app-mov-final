@@ -14,10 +14,10 @@ class App extends StatelessWidget {
       create: (context) => DrawerCubit(),
       child: MaterialApp(
         title: 'Estilo 360',
-        initialRoute: '/profile',
+        initialRoute: '/auth',
         routes: {
           '/home': (context) => HomePage(),
-          '/profile': (context) => AuthPage(),
+          '/auth': (context) => AuthPage(),
           '/settings': (context) => SettingsPage(),
           '/about/us': (context) => AboutUsPage(),
           '/contacts': (context) => ContactPage(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'custom_text_field.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -8,33 +9,34 @@ class RegisterForm extends StatefulWidget {
 
 class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
-  String? _validateEmail(String? value) {
-    final emailPattern = r'^[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+';
-    if (value == null || !RegExp(emailPattern).hasMatch(value)) {
-      return 'Ingrese un correo válido';
+  Future<void> _register() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Registro exitoso')),
+        );
+        Navigator.pushReplacementNamed(
+            context, '/auth'); // Regresa a la pantalla de login.
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: ${e.toString()}')),
+        );
+      }
     }
-    return null;
-  }
-
-  String? _validatePhone(String? value) {
-    if (value == null || value.length != 10) {
-      return 'Ingrese un número de teléfono válido (10 dígitos)';
-    }
-    return null;
   }
 
   @override
@@ -46,12 +48,12 @@ class _RegisterFormState extends State<RegisterForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CustomTextField(
-            controller: _usernameController,
-            labelText: 'Usuario',
-            prefixIcon: Icon(Icons.person, color: Colors.lightBlue),
+            controller: _emailController,
+            labelText: 'Correo electrónico',
+            prefixIcon: Icon(Icons.email, color: Colors.lightBlue),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Por favor ingrese un usuario';
+                return 'Por favor ingrese un correo válido';
               }
               return null;
             },
@@ -70,29 +72,8 @@ class _RegisterFormState extends State<RegisterForm> {
             },
           ),
           SizedBox(height: 20),
-          CustomTextField(
-            controller: _emailController,
-            labelText: 'Email',
-            prefixIcon: Icon(Icons.email, color: Colors.lightBlue),
-            validator: _validateEmail,
-          ),
-          SizedBox(height: 20),
-          CustomTextField(
-            controller: _phoneController,
-            labelText: 'Celular',
-            prefixIcon: Icon(Icons.phone, color: Colors.lightBlue),
-            keyboardType: TextInputType.phone,
-            validator: _validatePhone,
-          ),
-          SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Registro exitoso')),
-                );
-              }
-            },
+            onPressed: _register,
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.lightBlue,
               foregroundColor: Colors.white,
