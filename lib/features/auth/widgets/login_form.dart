@@ -11,6 +11,7 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false; // Estado de carga
 
   @override
   void dispose() {
@@ -22,6 +23,10 @@ class _LoginFormState extends State<LoginForm> {
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
       try {
+        setState(() {
+          _isLoading = true; // Activa el indicador de carga
+        });
+
         await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
@@ -32,8 +37,12 @@ class _LoginFormState extends State<LoginForm> {
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error: ${e.toString()}')),
+          SnackBar(content: Text('Error: Correo o contraseña incorrectos.')),
         );
+      } finally {
+        setState(() {
+          _isLoading = false; // Desactiva el indicador de carga
+        });
       }
     }
   }
@@ -71,18 +80,20 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: _login,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.lightBlue,
-              foregroundColor: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-            ),
-            child: Text('Iniciar Sesión', style: TextStyle(fontSize: 18)),
-          ),
+          _isLoading
+              ? CircularProgressIndicator() // Muestra el indicador de carga
+              : ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlue,
+                    foregroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  child: Text('Iniciar Sesión', style: TextStyle(fontSize: 18)),
+                ),
         ],
       ),
     );
