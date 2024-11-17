@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/features/about_us/about-us.dart';
 import 'package:proyecto_final/features/contacts/ContactPage.dart';
 import 'package:proyecto_final/features/home/app-home.dart';
+import 'package:proyecto_final/features/home/widgets/cart-list.dart';
 import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
 import 'package:proyecto_final/features/auth/app-auth.dart';
 import 'package:proyecto_final/features/settings/app-settings.dart';
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
         initialRoute: '/auth',
         routes: {
           '/home': (context) => HomePage(),
+          '/shopping/cart': (context) => CartList(),
           '/auth': (context) => AuthPage(),
           '/settings': (context) => SettingsPage(),
           '/about/us': (context) => AboutUsPage(),
