@@ -30,7 +30,7 @@ class DBConnection {
     await db.execute('''
       CREATE TABLE cartItems (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        productId INTEGER,
+        product_id INTEGER,
         name TEXT,
         price REAL,
         quantity INTEGER
@@ -45,8 +45,8 @@ class DBConnection {
     await db.execute('''
       CREATE TABLE invoice_items (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        invoiceId INTEGER,
-        productId INTEGER,
+        invoice_id INTEGER,
+        product_id INTEGER,
         name TEXT,
         price REAL,
         quantity INTEGER
