@@ -6,6 +6,7 @@ import 'package:proyecto_final/features/home/app-home.dart';
 import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
 import 'package:proyecto_final/features/auth/app-auth.dart';
 import 'package:proyecto_final/features/settings/app-settings.dart';
+import 'package:proyecto_final/features/profile/app-profile.dart';
 
 class App extends StatelessWidget {
   @override
@@ -14,13 +15,14 @@ class App extends StatelessWidget {
       create: (context) => DrawerCubit(),
       child: MaterialApp(
         title: 'Estilo 360',
-        initialRoute: '/profile',
+        initialRoute: '/auth',
         routes: {
           '/home': (context) => HomePage(),
-          '/profile': (context) => AuthPage(),
+          '/auth': (context) => AuthPage(),
           '/settings': (context) => SettingsPage(),
           '/about/us': (context) => AboutUsPage(),
           '/contacts': (context) => ContactPage(),
+          '/profile': (context) => ProfilePage(),
         },
       ),
     );

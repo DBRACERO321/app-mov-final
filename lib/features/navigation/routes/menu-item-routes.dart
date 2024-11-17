@@ -7,4 +7,6 @@ final List<MenuItem> menuItemRoutes = [
   MenuItem(title: 'Settings', icon: Icons.settings, route: '/settings'),
   MenuItem(title: 'Nosotros', icon: Icons.local_mall, route: '/about/us'),
   MenuItem(title: 'Contactos', icon: Icons.contacts, route: '/contacts'),
+  MenuItem(
+      title: 'Cerrar sesión', icon: Icons.send_to_mobile_sharp, route: '/auth'),
 ];

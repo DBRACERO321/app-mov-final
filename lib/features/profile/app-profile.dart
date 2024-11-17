@@ -3,12 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proyecto_final/common-widgets/appbar/appbar.dart';
-import 'package:proyecto_final/features/home/dummy_data/product-list.dart';
-import 'package:proyecto_final/features/home/widgets/product-card.dart';
 import 'package:proyecto_final/features/navigation/app-drawer.dart';
 import 'package:proyecto_final/features/navigation/cubit/drawer.cubit.dart';
+import 'package:proyecto_final/features/profile/widgets/update_form.dart';
 
-class HomePage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   // Método para obtener el nombre del usuario desde Firestore
   Future<String> getUserData() async {
     User? user = FirebaseAuth.instance.currentUser;
@@ -32,21 +31,16 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(kToolbarHeight), // Altura estándar de AppBar
+          preferredSize: Size.fromHeight(kToolbarHeight),
           child: FutureBuilder<String>(
-            future:
-                getUserData(), // Llamamos a la función que obtiene el nombre
+            future: getUserData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return AppbarW(title: 'Cargando...'); // Título mientras carga
+                return AppbarW(title: 'Cargando...');
               } else if (snapshot.hasError) {
-                return AppbarW(
-                    title: 'Error al cargar'); // Título en caso de error
+                return AppbarW(title: 'Error al cargar');
               } else if (snapshot.hasData) {
-                return AppbarW(
-                    title:
-                        '¡Hola, ${snapshot.data}!'); // Título con el nombre del usuario
+                return AppbarW(title: '¡Hola, ${snapshot.data}!');
               } else {
                 return AppbarW(title: '¡Hola, Usuario!'); // Título por defecto
               }
@@ -54,20 +48,32 @@ class HomePage extends StatelessWidget {
           ),
         ),
         drawer: AppDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Número de columnas
-              crossAxisSpacing: 5, // Espacio horizontal entre columnas
-              mainAxisSpacing: 5, // Espacio vertical entre filas
-              childAspectRatio: 0.8, // Relación de aspecto de las tarjetas
+        body: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Añadir el logo de imagen
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 300,
+                  height: 200,
+                ),
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  margin: EdgeInsets.symmetric(horizontal: 24.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.lightBlue, width: 1),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: UpdateProfileForm(),
+                  ),
+                ),
+              ],
             ),
-            itemCount: productList.length,
-            itemBuilder: (context, index) {
-              final product = productList[index];
-              return ProductCard(product: product);
-            },
           ),
         ),
       ),

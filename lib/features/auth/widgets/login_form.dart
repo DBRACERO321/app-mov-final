@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../../common-widgets/userstyle/custom_text_field.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -8,14 +9,48 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false; // Estado de carga
 
   @override
   void dispose() {
-    _usernameController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _login() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+
+        Navigator.pushReplacementNamed(
+          context,
+          '/home',
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Inicio de sesión exitoso')),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error: Correo o contraseña incorrectos.')),
+        );
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   @override
@@ -27,12 +62,12 @@ class _LoginFormState extends State<LoginForm> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CustomTextField(
-            controller: _usernameController,
-            labelText: 'Usuario',
-            prefixIcon: Icon(Icons.person, color: Colors.lightBlue),
+            controller: _emailController,
+            labelText: 'Correo electrónico',
+            prefixIcon: Icon(Icons.email, color: Colors.lightBlue),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Por favor ingrese su usuario';
+                return 'Por favor ingrese su correo electrónico';
               }
               return null;
             },
@@ -51,25 +86,20 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                Navigator.pushReplacementNamed(context, '/home');
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Inicio de sesión exitoso')),
-                );
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.lightBlue,
-              foregroundColor: Colors.white,
-              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-            ),
-            child: Text('Iniciar Sesión', style: TextStyle(fontSize: 18)),
-          ),
+          _isLoading
+              ? CircularProgressIndicator() // Muestra el indicador de carga
+              : ElevatedButton(
+                  onPressed: _login,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightBlue,
+                    foregroundColor: Colors.white,
+                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  child: Text('Iniciar Sesión', style: TextStyle(fontSize: 18)),
+                ),
         ],
       ),
     );
