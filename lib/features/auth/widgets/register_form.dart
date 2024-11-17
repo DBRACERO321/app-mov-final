@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Importamos Firestore
-import 'custom_text_field.dart';
+import '../../../common-widgets/userstyle/custom_text_field.dart';
 
 class RegisterForm extends StatefulWidget {
   @override

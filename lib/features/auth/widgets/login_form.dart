@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'custom_text_field.dart';
+import '../../../common-widgets/userstyle/custom_text_field.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -24,14 +24,20 @@ class _LoginFormState extends State<LoginForm> {
     if (_formKey.currentState!.validate()) {
       try {
         setState(() {
-          _isLoading = true; // Activa el indicador de carga
+          _isLoading = true;
         });
 
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
-        Navigator.pushReplacementNamed(context, '/home');
+
+        Navigator.pushReplacementNamed(
+          context,
+          '/home',
+        );
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Inicio de sesión exitoso')),
         );
@@ -41,7 +47,7 @@ class _LoginFormState extends State<LoginForm> {
         );
       } finally {
         setState(() {
-          _isLoading = false; // Desactiva el indicador de carga
+          _isLoading = false;
         });
       }
     }
