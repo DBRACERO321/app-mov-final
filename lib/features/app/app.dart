@@ -17,6 +17,28 @@ class App extends StatelessWidget {
       child: MaterialApp(
         title: 'Estilo 360',
         initialRoute: '/auth',
+        theme: ThemeData(
+          primaryColor: Colors.blue, // Cambia al color deseado
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: Colors.lightBlue,
+            secondary: Colors.green,
+          ),
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Colors.blue, // Cambia el color del cursor
+            selectionColor:
+                Colors.lightBlueAccent, // Color para selección de texto
+            selectionHandleColor:
+                Colors.lightBlueAccent, // Control de selección
+          ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white, // Color del AppBar
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.lightBlue, // Color para botones elevados
+            ),
+          ),
+        ),
         routes: {
           '/home': (context) => HomePage(),
           '/shopping/cart': (context) => CartList(),

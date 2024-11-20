@@ -89,15 +89,18 @@ class _CartListState extends State<CartList> {
                 final invoiceId =
                     await DBOShoppingCart().insertInvoice(invoiceForInsert);
                 print("aqui se debe limpiar el carrito");
-                 final resultados =
-                    await DBOShoppingCart().getCartItems();
-                    print("resultados $resultados");
-                cartProvider.clearCart(); // Limpia el carrito después de la compra
+                final resultados = await DBOShoppingCart().getCartItems();
+                print("resultados $resultados");
+                cartProvider
+                    .clearCart(); // Limpia el carrito después de la compra
                 Navigator.pushReplacementNamed(
                   context,
                   '/home',
                 ); // Regresa a la pantalla anterior
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue[50], // Fondo del botón
+              ),
               child: Text(
                   "Finalizar Compra - Total: \$${cartProvider.totalAmount.toStringAsFixed(2)}"),
             ),
